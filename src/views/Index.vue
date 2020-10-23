@@ -36,18 +36,6 @@ export default {
 
       })
 
-    /*  const tokens = localStorage.getItem('token');
-     axios.get("http://localhost:1337/Imagenes/me/", {
-         headers: {
-           'Authorization': 'Bearer ' + tokens,
-         },
-       })
-       .then((res) => {
-         this.imagenes = res.data;
-         console.log(res);
-
-       }) */
-
   }
 }
 </script>

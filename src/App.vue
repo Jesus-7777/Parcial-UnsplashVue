@@ -1,6 +1,6 @@
 <template>
 <body>
-  <nav class="navbar navbar-expand-sm navbar-light ">
+  <nav class="navbar navbar-expand-sm navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -48,7 +48,7 @@
             <div v-if="error"><samp style="color:red">Las credenciales no son correctas</samp></div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-primary" aria-label="close">Iniciar</button>
+            <button class="btn btn-primary">Iniciar</button>
           </div>
         </div>
       </div>
@@ -73,6 +73,7 @@
   <div class="nav-link">
     <button class="btn btn-primary "><a href="/" class="text-white badge">Inicio</a></button>
     <button class="btn btn-primary "><a href="/tags" class="text-white badge">Tags</a></button>
+    <button class="btn btn-primary "><a href="/home" class="text-white badge">Mis imagenes</a></button>
   </div>
   <router-view />
 </body>
