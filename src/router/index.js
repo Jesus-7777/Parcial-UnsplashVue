@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue';
-import Login from '@/views/Login.vue';
+//import App from '@/views/App.vue';
+//import Login from '@/views/Login.vue';
 import Tags from '@/views/tags/Tag.vue';
 import CreateTag from '@/views/tags/CreateTag.vue';
 import EditTag from '@/views/tags/EditTag.vue'
@@ -13,12 +14,12 @@ const routes = [{
             requireAuth: true
         }
     },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login
+    /*  {
+         path: '/login',
+         name: 'Login',
+         component: Login
 
-    },
+     }, */
     {
         path: '/tags',
         name: 'Tags',
