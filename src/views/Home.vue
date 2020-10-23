@@ -9,11 +9,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Home',
   data() {
     return {
-      user: {}
+      user: {},
     }
   },
   mounted() {
@@ -31,14 +33,23 @@ export default {
     )
 
   },
+
   methods: {
     salir() {
       //console.log("saliendo")
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      this.$router.push('/login')
-    }
+      this.$router.push('/')
+    },
+
+    /*  fetch() {
+      let result = axios.get("http://localhost:1337/Imagenes/").then(res => {
+        this.imagenes = data;
+      }).catch(err => {
+        console.log(err)
+      });
+    }*/
   }
 
-};
+}
 </script>

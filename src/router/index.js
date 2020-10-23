@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue';
-//import App from '@/views/App.vue';
-//import Login from '@/views/Login.vue';
 import Tags from '@/views/tags/Tag.vue';
 import CreateTag from '@/views/tags/CreateTag.vue';
 import EditTag from '@/views/tags/EditTag.vue'
+import Index from '../views/Index.vue'
 
 const routes = [{
         path: '/',
+        name: 'Index',
+        component: Index,
+
+    },
+
+    {
+        path: '/home',
         name: 'Home',
         component: Home,
         meta: {
@@ -44,7 +50,8 @@ const routes = [{
         meta: {
             requireAuth: true
         }
-    }
+    },
+
 ]
 
 const router = createRouter({
@@ -57,7 +64,7 @@ router.beforeEach((to, from, next) => {
         //La ruta requiere autenticacion
         const token = localStorage.getItem('token');
         if (!token) {
-            next('/login')
+            next('/')
         }
     }
     next()

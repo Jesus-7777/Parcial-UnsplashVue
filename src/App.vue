@@ -15,7 +15,7 @@
         </li>
       </ul>
       <form class="mr-3 form-inline my-lg-0">
-        <input class="form-control mr-sm-2 border-secondary btn-light col-sm-10 m-2" style="border-radius: 40px; width: 380px;" type="search" placeholder="Fotos de alta Calidad" aria-label="Search">
+        <input class="form-control mr-sm-2 border-secondary btn-light col-sm-10 m-2" style="border-radius: 40px; width: 380px;" v-model="search" type="text" placeholder="Fotos de alta Calidad" aria-label="Search">
         <a href="#">
           <svg width="24" height="24" class="_2-tlh _1azRR _1mPD6" version="1.1" viewBox="0 0 32 32" aria-hidden="false">
             <path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path>
