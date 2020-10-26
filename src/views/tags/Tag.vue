@@ -59,7 +59,6 @@ export default {
       //this.buscar(value)//TODO: aqui el metodo buscar
       this.traerTags(value) //TODO se cambian por la funcion traerTag
     }
-
   },
 
   methods: {
@@ -85,13 +84,14 @@ export default {
       if (search && search != "") { //TODO: ESta es la logica para buscar
         params.nombre_contains = search
       }
-      axios.get('http://localhost:1337/tags', {
+      axios.get('http://localhost:1337/tags/', {
         params
       }).then((response) => {
         this.tags = response.data
 
       });
     },
+
     eliminar(id) {
       axios.delete("http://localhost:1337/tags/" + id, {
         headers: {

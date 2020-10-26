@@ -1,10 +1,9 @@
 <template>
-<div class="card imagen_card mb-4">
-  <img :src="'http://localhost:1337'+imagen.url.url" class="card-img-top img-rounded imagenes__img" />
+<div v-for="buscar in  busqueda.imagenes" :key="buscar" class="card imagen_card mb-4">
+  <img :src="'http://localhost:1337'+buscar.url.url" class="card-img-top img-rounded imagenes__img" />
   <div class="div1 bg-secundary ">
     <small>
-      <p class="card-title text-center">{{ imagen.user.username }}</p>
-
+      <p class="card-title text-center">{{ busqueda.nombre }}</p>
     </small>
   </div>
 </div>
@@ -12,9 +11,8 @@
 
 <script>
 export default {
-  name: "Imagen",
-  props: ["imagen"],
-
+  name: "Busqueda",
+  props: ["busqueda"],
 };
 </script>
 
