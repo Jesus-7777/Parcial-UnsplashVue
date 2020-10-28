@@ -1,7 +1,7 @@
 <template>
 <div class="card imagen_card mb-4">
   <img :src="'http://localhost:1337'+imagen.url.url" class="card-img-top img-rounded imagenes__img" />
-  <div class="div1 bg-secundary ">
+  <div class=" bg-secundary ">
     <small>
       <p class="card-title text-center">{{ imagen.user.username }}</p>
 

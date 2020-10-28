@@ -1,39 +1,131 @@
 <template>
-<nav class="navbar navbar-expand-sm navbar-light">
+<nav class="navbar navbar-expand-sm navbar-light ">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <img class="m-2" src="https://unsplash.com/assets/core/logo-black-df2168ed0c378fa5506b1816e75eb379d06cfcd0af01e07a2eb813ae9b5d7405.svg" alt="" style="width:auto; height: auto;">
 
+  <a class="nav-link nav-item active text-dark d-flex justify-content-center" href="#">
+    <h3><strong> Unsplash </strong></h3> <span class="sr-only">(current)</span>
+  </a>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto  mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link " href="#">
-          <h3><strong> Unsplash </strong></h3> <span class="sr-only">(current)</span>
-        </a>
+
       </li>
+
+      <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li> -->
+      <!-- <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li> -->
     </ul>
-    <div class="row">
-      <div class="col col-xs-12 mr-3 form-inline my-lg-0">
-        <input class="form-control mr-sm-2 border-secondary btn-light col-sm-10 m-2" style="border-radius: 40px; width: 380px;" v-model="search" type="text" placeholder="Fotos de alta Calidad">
-        <!--<a href="#">
-            <svg width="24" height="24" class="_2-tlh _1azRR _1mPD6" version="1.1" viewBox="0 0 32 32" aria-hidden="false">
-              <path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path>
-            </svg>
-          </a>-->
+
+    <div class="btn-group mr-3" role="group" aria-label="Button group with nested dropdown">
+      <div class="btn-group" role="group">
+
+        <div class="input-group-prepend ">
+          <div class="mr-3">Categorias</div>
+
+          <select class="input-group-text bg-transparent  custom-select rounded-right pr-5" v-model="checkedNames" aria-describedby="emailHelp">
+            <option class="text-dark" v-for="tag in tags" :key="tag.id" :value="tag.nombre">
+              {{ tag.nombre }}
+            </option>
+            <option class="text-dark" value="" selected>Todas</option>
+          </select>
+        </div>
       </div>
     </div>
-    <button type="button" class="btn-sm btn btn-oflink mr-2 ml-2 border-left " data-target="#mymodel" data-toggle="modal"> Login</button>
-    <button type="button" class="btn btn-sm btn-success mr-3">Registrarme</button>
-    <!--<div>
-      <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-      </svg>
-    </div>-->
+
+    <div class="nav-link">
+      <!--<button class="btn btn-primary "><a href="/tags" class="text-white badge">Tags</a></button>-->
+      <button type="button" class="mr-4 d-none d-md-block border-secondary hidden-xl-up btn btn-oflink mr-2 ml-2 border-left "><a href="/home" class="text-body" style="text-decoration: none;">Mis imagenes</a></button>
+    </div>
+    <button type="button" class="hidden-xl-up btn btn-oflink mr-2 ml-2 border-left" data-target="#mymodel" data-toggle="modal"> Login</button>
+    <!-- boton registrarme -->
+    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+      Registrarme </button>
+
+    <!-- fin boton registro -->
+    <form @submit.prevent="crearUser">
+      <div class="modal" id="exampleModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title text-center w-100 font-weight-bold">Crear un usuario</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;</button>
+            </div>
+
+            <div class="modal-body mx-3">
+              <div class="md-form md-5 mb-3">
+                <label for="pausername" data-error="wrong" data-success="right">Username</label>
+                <input type="text" class="form-control validate" v-model="pausername" id="pausername">
+              </div>
+              <div class="form-group">
+                <label for="paemail">Correo Electronico </label>
+                <input type="email" class="form-control" id="paemail" v-model="paemail" aria-describedby="emailHelp" />
+              </div>
+              <div class="md-form md-5">
+                <label for="papassword" data-error="wrong" data-success="right">Password</label>
+                <input type="password" class="form-control validate" v-model="papassword" id="papassword">
+              </div>
+              <div v-if="error"><samp style="color:red">Usuario creado correctamente</samp></div>
+              <div v-if="correcto"><samp style="color:green">Usuario no creado</samp></div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-primary">Iniciar </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </nav>
+
+<!-- Buscador-->
+<div class="container col-lg-6 col-md-8 pr-4">
+  <div class="abs-center">
+    <input class=" form-control mr-sm-2 border-secondary  m-2" style="width: 100%; border-radius: 40px; " v-model="buscar" type="search" aria-autocomplete="list" placeholder="Encuentra Fondos de pantalla, lugares, arte..." aria-label="Search">
+
+  </div>
+</div>
+<!-- CARRUSEL -->
+<div id="carouselExampleCaptions" class="carousel slide mb-5" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <img src="https://images.unsplash.com/photo-1489532043309-25f2c1b4b82f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1590&q=80" class="d-block w-100" style="max-height: 500px;" alt="asas">
+      <div class="carousel-caption d-none d-md-block">
+
+        <h1 class="display-3"> <b>BIENVENIDOS</b></h1>
+        <p class=" h4"> <i>Todas las experiencias las puedes encontrar en un solo lugar.</i></p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1594952881603-0c314c0d25e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1467&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1> ENTRETENIMIENTO</h1>
+        <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1596799295743-e01a7ccbbc63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1524&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1> LUGARES GENIALES</h1>
+        <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
+      </div>
+    </div>
+  </div>
+</div>
 <form @submit.prevent="login">
   <div class="modal" id="mymodel">
     <div class="modal-dialog">
@@ -52,7 +144,8 @@
             <label for="password" data-error="wrong" data-success="right">Password</label>
             <input type="password" class="form-control validate" v-model="password" id="password">
           </div>
-          <div v-if="error"><samp style="color:red">Las credenciales no son correctas</samp></div>
+          <div v-if="error"><samp style="color:red">Credenciales incorrectas</samp></div>
+          <div v-if="correcto"><samp style="color:green">Credenciales correctas</samp></div>
         </div>
         <div class="modal-footer d-flex justify-content-center">
           <button class="btn btn-primary">Iniciar </button>
@@ -62,37 +155,20 @@
   </div>
 </form>
 
-<div class="nav-scroller col-12 col-sm-12 col-lg-12">
-  <nav class="nav  d-flex justify-content-start">
-    <a class="p-2 mr-3 text-muted border-right" href="#">Editorial</a>
-    <a class="p-2 mr-3 text-muted" href="#">Arquitectura</a>
-    <a class="p-2 mr-3 text-muted" href="#">Eventos</a>
-    <a class="p-2 mr-3 text-muted" href="#">Mas...</a>
-  </nav>
-</div>
+<!--Imprimir-->
 
-<div class="nav-link">
-  <button class="btn btn-primary "><a href="./" class="text-white badge">Inicio</a></button>
-  <!--<button class="btn btn-primary "><a href="/tags" class="text-white badge">Tags</a></button>-->
-  <button class="btn btn-primary "><a href="/home" class="text-white badge">Mis imagenes</a></button>
-</div>
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="text-center">Imagenes</h1>
-    </div>
-  </div>
 
   <div class="row d-flex flex-row bd-highlight">
 
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" v-for="imagen in imagenes" :key="imagen.id">
       <Imagen :imagen="imagen" />
     </div>
-    <!--<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 p-2 bd-highlight" v-for="busqueda in tags" :key="busqueda">
-      <Busqueda :busqueda="busqueda" />
-    </div>-->
-  </div>
 
+    <!--<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 p-2 bd-highlight" v-for="busqueda in tags" :key="busqueda">
+      <Busqueda :busqueda="busqueda" />-->
+
+  </div>
 </div>
 </template>
 
@@ -110,33 +186,57 @@ export default {
   },
   data() {
     return {
+      pausername: '',
+      paemail: '',
+      papassword: '',
       username: '',
       password: '',
-      search: '',
+      //search: '',
       tags: [],
       imagenes: [],
-      page: 1,
-      pages: 1,
       error: false,
+      correcto: false,
+      checkedNames: "",
+      buscar: "",
       //formType: false,
 
     };
   },
   mounted() {
+    axios.get("http://localhost:1337/tags").then((response) => {
+        this.tags = response.data;
+      }),
+      (this.Search = debounce(this.Search, 600));
+
     this.traerImagenes();
-    this.traerTags = debounce(this.traerTags, 700); // TODO: pone un lapso de tiempo para la peticion a los servidores "importante"
+    //this.traerTags = debounce(this.traerTags, 700); // TODO: pone un lapso de tiempo para la peticion a los servidores "importante"
     //this.traerTags();
 
   },
   watch: {
-    search(value) {
-      //this.buscar(value)
-      this.traerTags(value)
-    }
+    checkedNames(value) {
+      this.Search(value);
+    },
+    buscar(value) {
+      this.Search(value);
+    },
   },
 
   methods: {
-    traerTags(search = null) { //TODO: se resive los parametros 
+    Search(value) {
+      axios
+        .get("http://localhost:1337/imagenes?_sort=id%3ADESC", {
+          params: {
+            "tags.nombre_contains": value,
+          },
+        })
+        .then((response) => {
+          this.imagenes = response.data;
+          console.log("imagenes")
+        });
+    },
+
+    /* traerTags(search = null) { //TODO: se resive los parametros 
 
       let params = {
         _sort: this.default_sort
@@ -149,7 +249,7 @@ export default {
       }).then((response) => {
         this.tags = response.data;
       });
-    },
+    }, */
 
     traerImagenes() {
       axios.get("http://localhost:1337/Imagenes/")
@@ -157,9 +257,41 @@ export default {
           this.imagenes = res.data;
         });
     },
+    crearUser() {
+      fetch('http://localhost:1337/auth/local/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ // se envia todo el form
+            username: this.pausername,
+            email: this.paemail,
+            password: this.papassword,
+          })
+        }).then(async (response) => {
+          if (!response.ok) {
+            throw await response.json()
+          }
+          return response.json()
+          //this.formType = true;
+        })
+        .then((data) => {
+          this.correcto = true;
+          localStorage.setItem('token', data.jwt); //solo guarda valor string
+          localStorage.setItem('user', JSON.stringify(data.user)); //para resivir un objeto se lo convierte con JSON.stringify
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          this.error = true
+
+        })
+
+    },
 
     login() {
       this.error = false,
+        this.correcto = false,
+
         //this.formType = false,
         //this.correcto = false
         fetch('http://localhost:1337/auth/local', {
@@ -179,7 +311,7 @@ export default {
           //this.formType = true;
         })
         .then((data) => {
-
+          this.correcto = true;
           localStorage.setItem('token', data.jwt); //solo guarda valor string
           localStorage.setItem('user', JSON.stringify(data.user)); //para resivir un objeto se lo convierte con JSON.stringify
           this.$router.push('/')
