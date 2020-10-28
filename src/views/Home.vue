@@ -132,7 +132,7 @@
       <label :for="categoria.nombre">{{ categoria.nombre }}</label>
     </div>
   </div>
-  <div class="col-12 col-md-6 text-center justify-content-center  mx-auto" style="height: 300px;">
+  <div class="col-12 col-md-6 text-center justify-content-center  mx-auto">
     <p><b>Previsualizacion:</b></p>
     <br>
     <div v-if="image === ''">
@@ -141,7 +141,7 @@
       </div>
     </div>
     <div>
-      <img class="card-img-top" :src="image" alt="">
+      <img class="card-img-top estatico" :src="image" alt="">
     </div>
   </div>
 </div>
@@ -273,3 +273,11 @@ export default {
 
 }
 </script>
+
+<style>
+.estatico {
+  max-width: 300px;
+  max-height: 250px;
+  object-fit: contain;
+}
+</style>
