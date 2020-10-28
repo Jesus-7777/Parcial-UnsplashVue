@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-sm navbar-light ">
+<nav class="navbar navbar-expand-sm navbar-light bg-white sticky-top border-bottom">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,37 +24,7 @@
     <div>
       <button type="button" class="mr-4 d-none d-md-block border-secondary hidden-xl-up btn btn-oflink mr-2 ml-2 border-left "><a href="/" class="text-body " style="text-decoration: none;">Inicio</a></button>
     </div>
-    <button type="button" class="mr-4 d-none d-md-block border-secondary hidden-xl-up btn btn-oflink mr-2 ml-2 border-left " data-toggle="modal" data-target="#mymodel"> Cargar imagen</button>
-
-    <div>
-      <form @submit.prevent="login">
-        <div class="modal" id="mymodel">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                <h4 class="modal-title text-center w-100 font-weight-bold">Cargar Imagen</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;</button>
-              </div>
-              <div class="container-fluid l-container">
-                <div class="border border-warning rounded">
-                  <h1 class="text-darck text-center">Cargar Imagen</h1>
-                  <input type="file" @change="onFileSelected" accept="image/jpeg, image/png, image/jpg, image/gif" oninput="pic.src=window.URL.createObjectURL(this.files[0])" />
-                  <div class="preview">
-                    <img id="pic" />
-                  </div>
-                  <button @click="onUpload" class="btn rounded border-dark">
-                    Enviar Imagen
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
     <button class="btn btn-primary" @click="salir">Salir</button>
-    <!-- d-none d-md-block  -->
-    <!--Cargar imagen-->
 
     <div class="col-xs-12 mr-4 ml-5 text-center ">
       <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-person-circle mb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +78,7 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <img src="https://images.unsplash.com/photo-1489532043309-25f2c1b4b82f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1590&q=80" class="d-block w-100" style="max-height: 500px;" alt="asas">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/i37cf18a400e509f4/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="asas">
       <div class="carousel-caption d-none d-md-block">
 
         <h1 class="display-3"> <b>BIENVENIDOS</b></h1>
@@ -117,7 +87,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1594952881603-0c314c0d25e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1467&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/ic0967dbf8feb6b22/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h1> ENTRETENIMIENTO</h1>
         <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
@@ -125,7 +95,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1596799295743-e01a7ccbbc63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1524&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/i07a21a07e3c2d184/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h1> LUGARES GENIALES</h1>
         <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
@@ -133,10 +103,50 @@
     </div>
   </div>
 </div>
-
-<div class="text-center">
+<div class="text-center mb-4">
   <h1>Bienvenido {{user.email}}</h1>
 </div>
+<hr>
+<!--SUBIR IMAGEN-->
+<div class="row mb-3">
+  <div class="col-11 align-self-center text-center">
+    <font size="6">AGREGAR UNA IMAGEN</font>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 text-center">
+    <form @submit.prevent="subirimagen" @change="prevista" enctype="multipart/form-data">
+      <input type="file" ref="file" id="file" accept="image/*" required>
+      &nbsp;
+      <button type="submit" class="btn btn-success btn-sm">subir</button>
+    </form>
+    <span>Seleccione una categoria: </span>
+    <div v-if="alerta === true">
+      <div class="alert alert-danger" role="alert">
+        Seleccione almenos una categoria
+      </div>
+    </div>
+    <div v-for="categoria in cat" :key="categoria.id">
+      <input type="checkbox" :id="categoria.nombre" :value="categoria.id" v-model="checkedNames">
+      <label :for="categoria.nombre">{{ categoria.nombre }}</label>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 text-center justify-content-center  mx-auto" style="height: 300px;">
+    <p><b>Previsualizacion:</b></p>
+    <br>
+    <div v-if="image === ''">
+      <div class="alert alert-primary" role="alert">
+        No a seleccionado ningun archivo
+      </div>
+    </div>
+    <div>
+      <img class="card-img-top" :src="image" alt="">
+    </div>
+  </div>
+</div>
+<!--Imprimir imagen-->
+
 <div class="container text-center">
   <div>
     <div class="mb-5 mt-5">
@@ -164,33 +174,52 @@ export default {
     return {
       user: {},
       imagenes: [],
-      selectedFile: null,
+      cat: [],
+      checkedNames: [],
+      image: "",
+      subirimage: "",
+      alerta: false
     }
   },
   mounted() {
+    axios.get('http://localhost:1337/tags').then((response) => {
+      this.cat = response.data
+    })
     this.autentificarUser();
     this.mostrarImagen();
     // this.eliminar();
   },
 
   methods: {
-
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
+    prevista(e) {
+      this.image = URL.createObjectURL(e.target.files[0])
+      this.subirimage = e.target.files[0]
     },
-    onUpload() {
-      // const tokens = localStorage.getItem('token');
-      const fd = new FormData();
-      fd.append("url", this.selectedFile, this.selectedFile.name);
-      axios.post("http://localhost:1337/Imagenes", fd, {
+    subirimagen() {
+      if (this.checkedNames.length == 0) {
+        this.alerta = true
+      } else {
+        this.alerta = false
+        const token = localStorage.getItem('token')
+        var formData = new FormData();
+        let data = {
+          categorias: this.checkedNames
+        }
 
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        },
-      }).then((res) => {
-        console.log(res);
-      });
+        formData.append("files.url", this.subirimage);
+        formData.append("data", JSON.stringify(data));
+
+        axios.post("http://localhost:1337/imagenes", formData, {
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            "Content-Type": 'multipart/form-data',
+          }
+        }).then((response) => {
+          this.$router.push("/")
+        })
+      }
     },
+
     mostrarImagen() {
       const tokens = localStorage.getItem('token');
       axios.get("http://localhost:1337/Imagenes/me", {

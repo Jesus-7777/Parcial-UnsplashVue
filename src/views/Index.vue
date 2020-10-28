@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-sm navbar-light ">
+<nav class="navbar navbar-expand-sm navbar-light bg-white sticky-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,7 +26,7 @@
       <div class="btn-group" role="group">
 
         <div class="input-group-prepend ">
-          <div class="mr-3">Categorias</div>
+          <div class="mr-3 mt-1">Categorias</div>
 
           <select class="input-group-text bg-transparent  custom-select rounded-right pr-5" v-model="checkedNames" aria-describedby="emailHelp">
             <option class="text-dark" v-for="tag in tags" :key="tag.id" :value="tag.nombre">
@@ -101,7 +101,7 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <img src="https://images.unsplash.com/photo-1489532043309-25f2c1b4b82f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1590&q=80" class="d-block w-100" style="max-height: 500px;" alt="asas">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/i37cf18a400e509f4/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="asas">
       <div class="carousel-caption d-none d-md-block">
 
         <h1 class="display-3"> <b>BIENVENIDOS</b></h1>
@@ -110,7 +110,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1594952881603-0c314c0d25e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1467&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/ic0967dbf8feb6b22/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h1> ENTRETENIMIENTO</h1>
         <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1596799295743-e01a7ccbbc63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1524&q=80" class="d-block w-100" style="max-height: 480px;" alt="...">
+      <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s6d7954848f1c7d92/image/i07a21a07e3c2d184/version/1603853534/image.jpg" class="d-block w-100" style="max-height: 480px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h1> LUGARES GENIALES</h1>
         <p class="h5"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
